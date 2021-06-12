@@ -12,10 +12,10 @@ public class Display {
         this.title = title;
         this.width = width;
         this.height = height;
-        createDisplay();
+        run();
     }
 
-    private void createDisplay() {
+    public void run() {
         jFrame = new JFrame(title);
         jFrame.setSize(width, height);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

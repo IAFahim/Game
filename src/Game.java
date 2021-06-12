@@ -7,7 +7,7 @@ public class Game implements Runnable {
     private Thread thread;
 
     public String title;
-    public int width, height;
+    public static int width, height;
     private boolean running = false;
 
     private BufferStrategy bufferStrategy;
@@ -15,8 +15,8 @@ public class Game implements Runnable {
 
     Game(String title, int width, int height) {
         this.title = title;
-        this.width = width;
-        this.height = height;
+        Game.width = width;
+        Game.height = height;
     }
 
     public synchronized void start() {
@@ -61,10 +61,17 @@ public class Game implements Runnable {
 
     @Override
     public void run() {
+        long start=System.currentTimeMillis();
         initializeDisplay();
         while (running) {
             update();
             render();
+            System.out.println(System.currentTimeMillis()-start);
+            try {
+                Thread.sleep(50);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         stop();
     }
